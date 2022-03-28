@@ -1,13 +1,27 @@
 /**
  * Class PrimeNumber
  */
-export class PrimeNumber {
+export class PrimeNumber implements Iterable<number> {
   private static instance: PrimeNumber;
+  private primes: Map<number, number>;
 
   /**
    * Constructor PrimeNumber
    */
-  private constructor() {}
+  private constructor() {
+    this.primes = new Map<number, number>();
+
+    let primes = 0;
+    let i = 1;
+
+    while (primes < 100) {
+      if (this.isPrime(i)) {
+        primes++;
+        this.primes.set(primes, i);
+      }
+      i++;
+    }
+  }
 
   /**
    * Function that allow us to create a new PrimeNumber if it
@@ -16,7 +30,7 @@ export class PrimeNumber {
    * @return {PrimeNumber} Return the instance of our class
    */
   public static getInstance(): PrimeNumber {
-    if (PrimeNumber.instance === null) {
+    if (!PrimeNumber.instance) {
       PrimeNumber.instance = new PrimeNumber();
     }
 
@@ -30,15 +44,9 @@ export class PrimeNumber {
    */
   public primeNumbers(n: number): number[] {
     const result: number[] = [];
-    let primes = 0;
-    let i = 1;
 
-    while (primes < n) {
-      if (this.isPrime(i)) {
-        result.push(i);
-        primes++;
-      }
-      i++;
+    for (let i = 1; i <= n; i++) {
+      result.push(this.primes.get(i));
     }
 
     return result;
@@ -54,9 +62,7 @@ export class PrimeNumber {
     const result: number[] = [];
 
     for (let i = n; i <= m; i++) {
-      if (this.isPrime(i)) {
-        result.push(i);
-      }
+      result.push(this.primes.get(i));
     }
 
     return result;
@@ -74,7 +80,11 @@ export class PrimeNumber {
     return num > 1;
   }
 
-  // [Symbol.iterator](): Iterator<T> {
-  //   return this.primes.values();
-  // }
+  /**
+   * Iterator method
+   * @return {Iterator<T>} Returns an iterator that allow us to iterate throught our class
+   */
+  [Symbol.iterator](): Iterator<number> {
+    return this.primes.values();
+  }
 }

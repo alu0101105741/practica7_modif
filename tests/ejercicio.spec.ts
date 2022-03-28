@@ -11,7 +11,7 @@ describe('Test block on modification (PrimeNumber)', () => {
   });
 
   it('primeRange(n, m)', () => {
-    expect(primos.primeRange(1, 6)).to.eql([2, 3, 5]);
-    expect(primos.primeRange(3, 25)).to.eql([3, 5, 7, 11, 13, 17, 19, 23]);
+    expect(primos.primeRange(1, 6)).to.eql([2, 3, 5, 7, 11, 13]);
+    expect(primos.primeRange(3, 11)).to.eql([5, 7, 11, 13, 17, 19, 23, 29, 31]);
   });
 });
