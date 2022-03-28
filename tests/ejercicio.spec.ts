@@ -3,7 +3,7 @@ import {expect} from 'chai';
 import {PrimeNumber} from '../src/ejercicio';
 
 describe('Test block on modification (PrimeNumber)', () => {
-  const primos = new PrimeNumber();
+  const primos = PrimeNumber.getInstance();
 
   it('primeNumbers(n)', () => {
     expect(primos.primeNumbers(5)).to.eql([2, 3, 5, 7, 11]);

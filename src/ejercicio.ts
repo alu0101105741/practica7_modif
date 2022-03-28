@@ -7,7 +7,7 @@ export class PrimeNumber {
   /**
    * Constructor PrimeNumber
    */
-  constructor() {}
+  private constructor() {}
 
   /**
    * Function that allow us to create a new PrimeNumber if it
@@ -15,7 +15,7 @@ export class PrimeNumber {
    * our class
    * @return {PrimeNumber} Return the instance of our class
    */
-  public getInstance(): PrimeNumber {
+  public static getInstance(): PrimeNumber {
     if (PrimeNumber.instance === null) {
       PrimeNumber.instance = new PrimeNumber();
     }
@@ -75,6 +75,6 @@ export class PrimeNumber {
   }
 
   // [Symbol.iterator](): Iterator<T> {
-  // return this.primes.values();
+  //   return this.primes.values();
   // }
 }
